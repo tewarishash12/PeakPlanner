@@ -17,6 +17,6 @@ app.get("/", (req,res)=>{
 })
 
 
-app.listen(process.env.AUTHPORT, ()=>{
-    console.log(`Server is connected on http://localhost:${process.env.MAINPORT}`)
+app.listen(process.env.MAINPORT, ()=>{
+    console.log(`Main Server is connected on http://localhost:${process.env.MAINPORT}`)
 })
