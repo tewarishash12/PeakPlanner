@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 export function GetStarted() {
-    const darkMode = useSelector(state => state.mode.darkMode)
+    const currentUser = useSelector(state => state?.auth?.currentUser);
+
     return (
         <section className="flex flex-col items-center text-center px-6 py-20">
             <motion.h2
@@ -17,26 +18,27 @@ export function GetStarted() {
             <p className="text-lg max-w-2xl">
                 A powerful project management tool that keeps your team aligned, efficient, and on track.
             </p>
-            <div className="mt-6 flex gap-4">
-                <NavLink to="/signup">
-                    <button className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                        Get Started
-                    </button>
-                </NavLink>
-                <NavLink to="/login">
-                    <button className="px-6 py-3 border rounded-md hover:bg-gray-200 dark:hover:bg-gray-700">
-                        Login
-                    </button>
-                </NavLink>
-            </div>
+            {!currentUser && (
+                <div className="mt-6 flex gap-4">
+                    <NavLink to="/signup">
+                        <button className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                            Get Started
+                        </button>
+                    </NavLink>
+                    <NavLink to="/login">
+                        <button className="px-6 py-3 border rounded-md hover:bg-gray-200 dark:hover:bg-gray-700">
+                            Login
+                        </button>
+                    </NavLink>
+                </div>
+            )}
         </section>
     )
 }
 
-
 export function AppFeatures() {
     const darkMode = useSelector(state => state.mode.darkMode)
-
+    
     return (
         <section className={`py-16 ${darkMode ? "bg-gray-800" : "bg-gray-100"} transition-colors duration-300`}>
             <h3 className={`text-3xl font-bold text-center mb-10 ${darkMode ? "text-white" : "text-gray-900"}`}>
@@ -101,7 +103,7 @@ export function Dashboard() {
     const darkMode = useSelector(state => state.mode.darkMode)
 
     return (
-        <section 
+        <section
             className={`py-16 text-center transition-colors duration-300 
             ${darkMode ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-900"}`}
         >
@@ -120,4 +122,3 @@ export function Dashboard() {
         </section>
     );
 }
-
