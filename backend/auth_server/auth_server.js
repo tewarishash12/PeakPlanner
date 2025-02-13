@@ -21,5 +21,5 @@ app.use('/auth', authRoutes);
 
 
 app.listen(process.env.AUTHPORT, ()=>{
-    console.log(`Server is connected on http://localhost:${process.env.AUTHPORT}`)
+    console.log(`Auth Server is connected on http://localhost:${process.env.AUTHPORT}`)
 })

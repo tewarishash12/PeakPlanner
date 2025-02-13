@@ -7,10 +7,10 @@ const refreshTokens = new Set();
 
 exports.register = async (req, res) => {
     try {
-        const { username, email, password, role='teammember' } = req.body;
+        const { firstName, lastName, email, password, role='teammember' } = req.body;
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt)
-        const user = new User({ username, email, password: hashedPassword, role });
+        const user = new User({ firstName, lastName, email, password: hashedPassword, role });
         await user.save();
         res.status(201).json({ message: "New user created successfully" });
     } catch (err) {
@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
         
         
         if(!userInfo)
-            return res.status(404).json({message:"User with entered email not found"});
+            return res.status(403).json({message:"User with entered email not found"});
         
         const validation = await bcrypt.compare(password, userInfo.password)
         
@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
         const refreshToken = jwt.sign({user}, process.env.REFRESH_TOKEN_SECRET)
         refreshTokens.add(refreshToken);
 
-        const userData = {_id:userInfo._id, username:userInfo.username, email:userInfo.email, role:userInfo.role}
+        const userData = {_id:userInfo._id, firstName:userInfo.firstName, lastName:userInfo.lastName,email:userInfo.email, role:userInfo.role}
         const access_token = generateAccessToken(user)
         
         res.status(201).json({ message: "User logged in successfully", access_token:access_token, refreshToken:refreshToken, user:userData });
