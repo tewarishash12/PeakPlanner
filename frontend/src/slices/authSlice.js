@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
     async (formData, { rejectWithValue }) => {
@@ -46,6 +47,8 @@ const authSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, { payload }) => {
                 state.loading = false;
+                localStorage.setItem("accessToken", payload.access_token);
+                localStorage.setItem("refreshToken", payload.refresh_token);
                 state.currentUser = payload.user;
             })
             .addCase(loginUser.rejected, (state, { payload }) => {
