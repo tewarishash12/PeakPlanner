@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "auth" : "nodemon app.js"
+    "auth" : "nodemon auth_server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
