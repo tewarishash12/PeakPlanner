@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { register, login, logout, token } = require("../controllers/authControllers");
+const { register, login, logout, token } = require("../auth_controllers/authControllers");
 
 router.post("/register", register)
 

@@ -3,7 +3,7 @@ const app = express();
 const {} = require("./database");
 const cors = require("cors");
 const morgan = require('morgan');
-const authRoutes = require("./routes/authRoutes")
+const authRoutes = require("./auth_routes/authRoutes")
 
 app.use(cors({
     origin:true,
@@ -20,6 +20,6 @@ app.get("/", (req,res)=>{
 app.use('/auth', authRoutes);
 
 
-app.listen(process.env.PORT, ()=>{
-    console.log(`Server is connected on http://localhost:${process.env.PORT}`)
+app.listen(process.env.AUTHPORT, ()=>{
+    console.log(`Server is connected on http://localhost:${process.env.AUTHPORT}`)
 })
