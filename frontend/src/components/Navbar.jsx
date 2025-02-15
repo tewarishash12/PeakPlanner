@@ -25,7 +25,7 @@ function Navbar() {
             <div className="flex items-center gap-4">
                 <button 
                     onClick={() => dispatch(toggleMode())} 
-                    className={`p-2 rounded-md border transition-all duration-300 ${darkMode ? "bg-gray-800 border-gray-600 hover:bg-gray-700" : "bg-gray-200 border-gray-400 hover:bg-gray-300"}`}
+                    className={`p-2 rounded-md border transition-all duration-300 ${darkMode ? "bg-gray-800 border-gray-600 hover:bg-gray-700" : "bg-gray-100 border-gray-400 hover:bg-gray-300"}`}
                 >
                     {darkMode ? <Sun size={30} /> : <Moon size={30} />}
                 </button>
@@ -33,7 +33,7 @@ function Navbar() {
                 {currentUser ? (
                     // If user is logged in
                     <div className="flex items-center gap-4">
-                        <span className="font-medium">{currentUser.firstName} {currentUser.lastName}</span>
+                        <span className="font-medium">Hello, {currentUser.firstName} {currentUser.lastName}</span>
                         <button 
                             onClick={handleLogout} 
                             className="px-4 py-2 bg-red-600 text-white rounded-md transition-all duration-300 hover:bg-red-700"
