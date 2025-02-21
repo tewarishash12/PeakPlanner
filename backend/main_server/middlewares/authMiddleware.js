@@ -23,4 +23,22 @@ function authLogin(req, res, next) {
     })
 }
 
-module.exports = { authLogin }
+function adminValidation(){
+    if(req.user.role!=="admin")
+        return res.status(401).json({message:"you are unauthorised to make this request"});
+    next();
+}
+
+function managerValidation(){
+    if(req.user.role!=="manager")
+        return res.status(401).json({message:"you are unauthorised to make this request"});
+    next();
+}
+
+function teammemberValidation(){
+    if(req.user.role!=="teammember")
+        return res.status(401).json({message:"you are unauthorised to make this request"});
+    next();
+}
+
+module.exports = { authLogin,adminValidation,managerValidation,teammemberValidation }
