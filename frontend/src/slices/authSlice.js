@@ -1,10 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { axiosAuthInstance, axiosMainInstance } from "../hook";
-
-
-const AUTH_LINK = import.meta.env.VITE_AUTH_API_URL;
-const MAIN_LINK = import.meta.env.VITE_MAIN_API_URL;
 
 export const fetchCurrentUser = createAsyncThunk(
     "auth/fetchCurrentUser",
@@ -38,7 +33,6 @@ export const logoutUser = createAsyncThunk(
             localStorage.removeItem("refreshToken");
 
             await axiosAuthInstance.post(`/auth/logout`, { token: refreshToken });
-
 
             return true;
         } catch (error) {
