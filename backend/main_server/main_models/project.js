@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
     title: { type: String, required: true, trim: true },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    // assignedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     teamMembers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Task' }],
     status: { type: String, enum: ['pending', 'in-progress', 'completed'], default: 'pending' },
